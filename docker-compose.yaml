@@ -1,0 +1,28 @@
+version: '3'
+services:
+  nginx-sharp:
+    image: nginx:latest
+    container_name: nginx-sharp
+    ports:
+      - '80:80'
+    volumes:
+      - ./docker/nginx:/etc/nginx/conf.d
+      - .:/var/www/node_sharp
+      - .:/var/www/html/public
+    links:
+      - node-sharp
+    networks:
+      - app-network
+  node-sharp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: node-sharp
+    ports:
+      - '3000:3000'
+    container_name: node-sharp
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge

@@ -1,0 +1,11 @@
+api:
+  format: fm
+  resize:
+    width: w
+    height: h
+    fit: fit
+
+files:
+#  output: $uri_path!$uri_request #image.jpg!fm=png
+#  output: default #image.jpg!fm=png
+  output: $uri_dir/$uri_file_no_ext$resize_widthx$resize_height.$format #image_150x150.webp
